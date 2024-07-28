@@ -18,7 +18,7 @@ app.use(express.urlencoded({limit:"30mb",extended:true}))
 app.use('/uploads',express.static(path.join('uploads')))
 
 app.get('/',(req,res)=>{
-    res.send("Your tube is working")
+    res.send("K-Tube is working")
 })
 
 
@@ -30,7 +30,7 @@ const PORT= process.env.PORT || 5000
 
 
 app.listen(PORT,()=>{
-    console.log(`Server running on Port ${PORT}`)
+    console.log(`Server running on Port http://localhost:${PORT}`)
 })
 const DB_URL=process.env.DB_URL
 mongoose.connect(DB_URL).then(()=>{

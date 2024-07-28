@@ -21,7 +21,7 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
   const [profile, setprofile] = useState([]);
   const dispatch = useDispatch();
 
-  const currentuser = useSelector((state) => state.currentuserreducer);
+  // const currentuser = useSelector((state) => state.currentuserreducer);
   // console.log(currentuser)
   const successlogin = () => {
     if (profile.email) {
@@ -29,18 +29,21 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
       console.log(profile.email);
     }
   };
-  // console.log(currentuser)
-  // const currentuser={
-  //     result:{
-  //         _id:1,
-  //         name:"abcjabsc",
-  //         email:"abcd@gmail.com",
-  //         joinedon:"222-07-134"
-  //     }
-  // }
+  const currentuser = {
+    result: {
+      _id: 1,
+      name: "abcjabsc",
+      email: "abcd@gmail.com",
+      joinedon: "222-07-134",
+    },
+  };
+  console.log(currentuser);
 
   const google_login = useGoogleLogin({
-    onSuccess: (tokenResponse) => setuser(tokenResponse),
+    onSuccess: (tokenResponse) => {
+      setuser(tokenResponse);
+      console.log(tokenResponse);
+    },
 
     onError: (error) => console.log("Login Failed", error),
   });
@@ -58,9 +61,9 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
           }
         )
         .then((res) => {
-          setprofile(res.data);
-          successlogin();
-          // console.log(res.data)
+          // setprofile(res.data);
+          // successlogin();
+          console.log(res.data);
         });
     }
   }, [user, successlogin]);
