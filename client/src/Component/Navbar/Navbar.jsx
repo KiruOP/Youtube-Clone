@@ -6,11 +6,11 @@ import Searchbar from "./Searchbar/Searchbar";
 import { setcurrentuser } from "../../action/currentuser";
 
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; // Correct import for jwt-decode
 import { BiUserCircle } from "react-icons/bi";
 import { RiVideoAddLine } from "react-icons/ri";
 import React, { useState, useEffect } from "react";
-import { Link, generatePath } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
@@ -21,34 +21,25 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
   const [profile, setprofile] = useState([]);
   const dispatch = useDispatch();
 
-  // const currentuser = useSelector((state) => state.currentuserreducer);
+  const currentuser = useSelector((state) => state.currentuserreducer);
   // console.log(currentuser)
-  const successlogin = () => {
-    if (profile.email) {
-      dispatch(login({ email: profile.email }));
-      console.log(profile.email);
-    }
-  };
-  const currentuser = {
-    result: {
-      _id: 1,
-      name: "abcjabsc",
-      email: "abcd@gmail.com",
-      joinedon: "222-07-134",
-    },
-  };
-  console.log(currentuser);
 
   const google_login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       setuser(tokenResponse);
       console.log(tokenResponse);
     },
-
     onError: (error) => console.log("Login Failed", error),
   });
 
   useEffect(() => {
+    const successlogin = () => {
+      if (profile.email) {
+        dispatch(login({ email: profile.email }));
+        console.log(profile.email);
+      }
+    };
+
     if (user) {
       axios
         .get(
@@ -61,17 +52,19 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
           }
         )
         .then((res) => {
-          // setprofile(res.data);
-          // successlogin();
+          setprofile(res.data);
+          successlogin();
           console.log(res.data);
         });
     }
-  }, [user, successlogin]);
+  }, [user, profile.email, dispatch]);
+
   const logout = () => {
     dispatch(setcurrentuser(null));
     googleLogout();
     localStorage.clear();
   };
+
   useEffect(() => {
     const token = currentuser?.token;
     if (token) {
@@ -81,7 +74,8 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
       }
     }
     dispatch(setcurrentuser(JSON.parse(localStorage.getItem("Profile"))));
-  }, [currentuser?.token, dispatch, logout]);
+  }, [currentuser?.token, dispatch]);
+
   return (
     <>
       <div className="Container_Navbar">

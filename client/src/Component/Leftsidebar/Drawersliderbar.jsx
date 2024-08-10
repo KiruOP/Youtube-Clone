@@ -16,27 +16,27 @@ const Drawersliderbar = ({ toggledraw, toggledrawersidebar }) => {
       <div className="container2_DrawaerLeftSidebar">
         <div className="Drawer_leftsidebar">
           <NavLink to={"/"} className="icon_sidebar_div">
-            <p>
+            <div>
               <AiOutlineHome
                 size={22}
                 className="icon_sidebar"
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">Home</div>
-            </p>
+            </div>
           </NavLink>
           <div className="icon_sidebar_div">
-            <p>
+            <div>
               <MdOutlineExplore
                 size={22}
                 className="icon_sidebar"
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">Explore</div>
-            </p>
+            </div>
           </div>
           <div className="icon_sidebar_div">
-            <p>
+            <div>
               <img
                 src={shorts}
                 width={22}
@@ -45,88 +45,88 @@ const Drawersliderbar = ({ toggledraw, toggledrawersidebar }) => {
                 alt="shorts"
               />
               <div className="text_sidebar_icon">Shorts</div>
-            </p>
+            </div>
           </div>
 
           <div className="icon_sidebar_div">
-            <p>
+            <div>
               <MdSubscriptions
                 size={22}
                 className="icon_sidebar"
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">Subscriptions</div>
-            </p>
+            </div>
           </div>
         </div>
         <div className="libraryBtn_Drawerleftsidebar">
           <NavLink to={"/Library"} className="icon_sidebar_div">
-            <p>
+            <div>
               <MdOutlineVideoLibrary
                 size={22}
                 className="icon_sidebar"
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">Library</div>
-            </p>
+            </div>
           </NavLink>
           <NavLink to={"/Watchhistory"} className="icon_sidebar_div">
-            <p>
+            <div>
               <FaHistory
                 size={22}
                 className="icon_sidebar"
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">History</div>
-            </p>
+            </div>
           </NavLink>
           <NavLink to={"/Yourvideo"} className="icon_sidebar_div">
-            <p>
+            <div>
               <AiFillPlaySquare
                 size={22}
                 className="icon_sidebar"
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">Your Videos</div>
-            </p>
+            </div>
           </NavLink>
           <NavLink to={"/Watchlater"} className="icon_sidebar_div">
-            <p>
+            <div>
               <MdOutlineWatchLater
                 size={22}
                 className={"icon_sidebar"}
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">Watch Later</div>
-            </p>
+            </div>
           </NavLink>
           <NavLink to={"/Likedvideo"} className="icon_sidebar_div">
-            <p>
+            <div>
               <AiFillLike
                 size={22}
                 className="icon_sidebar"
                 style={{ margin: "auto 0.7rem" }}
               />
               <div className="text_sidebar_icon">Liked Videos</div>
-            </p>
+            </div>
           </NavLink>
         </div>
         <div className="subScriptions_lsdbar">
           <h3>Your Subscription</h3>
           <div className="chanel_lsdbar">
-            <p>C</p>
+            <div>C</div>
             <div>Chanel</div>
           </div>
           <div className="chanel_lsdbar">
-            <p>C</p>
+            <div>C</div>
             <div>Chanel</div>
           </div>
           <div className="chanel_lsdbar">
-            <p>C</p>
+            <div>C</div>
             <div>Chanel</div>
           </div>
           <div className="chanel_lsdbar">
-            <p>C</p>
+            <div>C</div>
             <div>Chanel</div>
           </div>
         </div>
