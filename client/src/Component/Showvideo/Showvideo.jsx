@@ -8,7 +8,7 @@ const Showvideo = ({ vid }) => {
     <>
       <Link to={`/videopage/${vid._id}`}>
         <video
-          src={`http://localhost:5353/${vid.video_src}`}
+          src={`http://localhost:3000/${vid.video_src}`}
           className="video_ShowVideo"
         />
       </Link>
