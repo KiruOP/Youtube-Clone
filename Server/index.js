@@ -26,7 +26,7 @@ app.use(bodyParser.json())
 app.use('/user',userroutes)
 app.use('/video',videoroutes)
 app.use('/comment',commentroutes)
-const PORT= process.env.PORT || 5000
+const PORT= process.env.PORT || 5353
 
 
 app.listen(PORT,()=>{
