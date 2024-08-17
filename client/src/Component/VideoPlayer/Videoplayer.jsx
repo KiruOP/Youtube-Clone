@@ -25,8 +25,16 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
   }, [tapCount]);
 
   const handleSingleTap = () => {
+        const lastTapEvent = videoRef.current?.lastTapEvent;
+
+    if (!lastTapEvent) return;
+
     const { width, height } = videoRef.current.getBoundingClientRect();
-    const { clientX, clientY } = videoRef.current.lastTapEvent.pointers[0];
+    const pointer = lastTapEvent.pointers[0];
+
+    if (!pointer) return;
+
+    const { clientX, clientY } = pointer;
 
     if (clientX > (2 * width) / 3 && clientY < height / 3) {
       // Single-tap on top-right corner
@@ -44,7 +52,15 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
   };
 
   const handleDoubleTap = () => {
-    const { clientX } = videoRef.current.lastTapEvent.pointers[0];
+    const lastTapEvent = videoRef.current?.lastTapEvent;
+
+    if (!lastTapEvent) return;
+
+    const pointer = lastTapEvent.pointers[0];
+
+    if (!pointer) return;
+
+    const { clientX } = pointer;
     const { width } = videoRef.current.getBoundingClientRect();
 
     if (clientX < width / 3) {
@@ -57,7 +73,15 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
   };
 
   const handleTripleTap = () => {
-    const { clientX } = videoRef.current.lastTapEvent.pointers[0];
+    const lastTapEvent = videoRef.current?.lastTapEvent;
+
+    if (!lastTapEvent) return;
+
+    const pointer = lastTapEvent.pointers[0];
+
+    if (!pointer) return;
+
+    const { clientX } = pointer;
     const { width } = videoRef.current.getBoundingClientRect();
 
     if (clientX < width / 3) {
