@@ -1,9 +1,39 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Hammer from 'react-hammerjs';
+import Hammer from 'hammerjs';
 
 const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
-  const videoRef = useRef(null);
-  const [tapCount, setTapCount] = useState(0);
+    const videoRef = useRef(null);
+    const [playbackRate, setPlaybackRate] = useState(1);
+    const [tapCount, setTapCount] = useState(0);
+  
+  useEffect(() => {
+    if (!videoRef.current) return;
+    // Initialize Hammer.js
+    const hammer = new Hammer(videoRef.current);
+
+    hammer.on('tap', (e) => {
+      videoRef.current.lastTapEvent = e;
+      setTapCount((prev) => prev + 1);
+    });
+
+    hammer.on('press', (e) => {
+      const { clientX } = e.pointers[0];
+      const { width } = videoRef.current.getBoundingClientRect();
+      if (clientX < width / 3) {
+        videoRef.current.playbackRate = 0.5;
+      } else if (clientX > (2 * width) / 3) {
+        videoRef.current.playbackRate = 2;
+      }
+    });
+
+    hammer.on('pressup', () => {
+        videoRef.current.playbackRate = 1;
+    });
+
+    return () => {
+      hammer.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     let timer;
@@ -96,39 +126,91 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
     }
   };
 
-  const handleTap = (e) => {
-    videoRef.current.lastTapEvent = e;
-    setTapCount((prev) => prev + 1);
-  };
+//   const handleTap = (e) => {
+//     videoRef.current.lastTapEvent = e;
+//     setTapCount((prev) => prev + 1);
+//   };
 
-  const handleHold = (e) => {
-    const { clientX } = e.pointers[0];
-    const { width } = videoRef.current.getBoundingClientRect();
+//   const handleHold = (e) => {
+//     const { clientX } = e.pointers[0];
+//     const { width } = videoRef.current.getBoundingClientRect();
 
-    if (clientX < width / 3) {
-      // Hold left
-      videoRef.current.playbackRate = 0.5;
-    } else if (clientX > (2 * width) / 3) {
-      // Hold right
-      videoRef.current.playbackRate = 2;
+//     if (clientX < width / 3) {
+//       // Hold left
+//       videoRef.current.playbackRate = 0.5;
+//     } else if (clientX > (2 * width) / 3) {
+//       // Hold right
+//       videoRef.current.playbackRate = 2;
+//     }
+//   };
+
+//   const handleRelease = () => {
+//     videoRef.current.playbackRate = 1;
+//   };
+
+  const handleKeyboardControls = (e) => {
+    switch (e.key) {
+      case 'ArrowRight':
+        videoRef.current.currentTime += 10;
+        break;
+      case 'ArrowLeft':
+        videoRef.current.currentTime -= 10;
+        break;
+      case ' ':
+        videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
+        break;
+      case 'n':
+        nextVideo();
+        break;
+      case 'c':
+        showComments();
+        break;
+      case 'l':
+        showLocation();
+        break;
+      default:
+        break;
     }
   };
 
-  const handleRelease = () => {
-    videoRef.current.playbackRate = 1;
+  const handleMouseClick = (e) => {
+    const { clientX, clientY } = e;
+    const { width, height } = videoRef.current.getBoundingClientRect();
+
+    if (clientX > (2 * width) / 3 && clientY < height / 3) {
+      showLocation();
+    } else if (clientX < width / 3) {
+      videoRef.current.currentTime -= 10;
+    } else if (clientX > (2 * width) / 3) {
+      videoRef.current.currentTime += 10;
+    } else {
+      videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
+    }
   };
 
+  
+  useEffect(() => {
+    const currentVideoRef = videoRef.current;
+
+    if (currentVideoRef) {
+      window.addEventListener('keydown', handleKeyboardControls);
+      currentVideoRef.addEventListener('click', handleMouseClick);
+    }
+
+    return () => {
+      if (currentVideoRef) {
+        window.removeEventListener('keydown', handleKeyboardControls);
+        currentVideoRef.removeEventListener('click', handleMouseClick);
+      }
+    };
+  }, [videoRef.current]);
+
   return (
-    <Hammer onTap={handleTap} onPress={handleHold} onPressUp={handleRelease}>
-      <div style={{ position: 'relative' }}>
         <video
           ref={videoRef}
           src={videoSrc}
-          style={{ width: '100%' }}
           controls
         />
-      </div>
-    </Hammer>
   );
 };
 
