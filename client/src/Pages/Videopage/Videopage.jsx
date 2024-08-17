@@ -8,54 +8,13 @@ import Comment from "../../Component/Comment/Comment";
 import { viewvideo } from "../../action/video";
 import { addtohistory } from "../../action/history";
 import { useSelector, useDispatch } from "react-redux";
+import { updatePoints, getUserProfile } from '../../action/userPointsActions.js';
 import CustomControls from "./CustomControl";
+
 const Videopage = () => {
   const { vid } = useParams();
   const dispatch = useDispatch();
   const vids = useSelector((state) => state.videoreducer);
-  //   const vids = [
-  //     {
-  //       _id: 0,
-  //       video_src: vid,
-  //       chanel: "wvjwenfj3njfwef",
-  //       title: "video 1",
-  //       uploader: "abc",
-  //       description: "description of video 1",
-  //     },
-  //     {
-  //       _id: 1,
-  //       video_src: vid,
-  //       chanel: "wvjwenfj3njfwef",
-  //       title: "video 1",
-  //       uploader: "abc",
-  //       description: "description of video 1",
-  //     },
-  //     {
-  //       _id: 2,
-  //       video_src: vid,
-  //       chanel: "wvjwenfj3njfwef",
-  //       title: "video 2",
-  //       uploader: "abc",
-  //       description: "description of video 2",
-  //     },
-  //     {
-  //       _id: 3,
-  //       video_src: vid,
-  //       chanel: "wvjwenfj3njfwef",
-  //       title: "video 3",
-  //       uploader: "abc",
-  //       description: "description of video 3",
-  //     },
-  //     {
-  //       _id: 4,
-  //       video_src: vid,
-  //       chanel: "wvjwenfj3njfwef",
-  //       title: "video 4",
-  //       uploader: "abc",
-  //       description: "description of video 4",
-  //     },
-  //   ];
-  console.log(vids);
   const vv = vids?.data?.filter((q) => q._id === vid)[0];
 
   const currentuser = useSelector((state) => state.currentuserreducer);
@@ -77,6 +36,9 @@ const Videopage = () => {
     handleviews();
   }, []);
 
+
+// Task 2: Custom Video Controller Logic Starts Here
+
   const videoRef = useRef(null);
   const [tapCount, setTapCount] = useState(0);
   const [gestureStart, setGestureStart] = useState({ x: 0, y: 0 });
@@ -88,7 +50,6 @@ const Videopage = () => {
     `http://localhost:5353/${vv?.filepath}`
   );
 
-  const user = useSelector((state) => state.currentuserreducer);
 
   useEffect(() => {
     let timer;
@@ -212,6 +173,38 @@ const Videopage = () => {
     }
   };
 
+  // Task 2: Custom Video Controller Logic Ends Here 
+
+  // Task 1: logic starts Here
+  // const [userPoint, setuserPoint] = useState({ points: 0, videosWatched: 0 });
+
+  // const addPoints = () => {
+  //   setuserPoint(prevUser => ({
+  //     ...prevUser,
+  //     videosWatched: prevUser.videosWatched + 1,
+  //     points: prevUser.points + 5
+  //   }));
+  // };
+
+  const userId = useSelector(state => state.userPointsReducer.user?.userId);
+  const userPoints = useSelector(state => state.userPointsReducer.user?.points);
+  
+    useEffect(() => {
+        // Fetch the current user's profile when the component mounts
+        if (userId) {
+            dispatch(getUserProfile(userId));
+        }
+    }, [dispatch, userId]);
+
+    const handleVideoWatched = () => {
+        // Dispatch action to update points and videos watched
+        if (userId) {
+            dispatch(updatePoints({userId: userId, points: 5, videosWatched: 1})); // Adds 5 points and increments videosWatched by 1
+        }
+    };
+
+  // Task 1: logic Ends Here
+
   return (
     <>
       <div className="container_videoPage">
@@ -227,7 +220,7 @@ const Videopage = () => {
                 ref={videoRef}
                 src={`http://localhost:5353/${vv?.filepath}`}
                 controls
-                // onEnded={() => dispatch(addPoints())}
+                onEnded={handleVideoWatched}
               />
               <CustomControls
                 onPlayPause={handlePlayPause}
@@ -237,13 +230,13 @@ const Videopage = () => {
               />
               <div>
                 <h3>User Profile</h3>
-                <p>Points: {user?.points}</p>
-                <p>Videos Watched: {user?.videosWatched}</p>
+                <p>Points: {userPoints}</p>
+                {/* <p>Videos Watched: {userPoint?.videosWatched}</p> */}
               </div>
             </div>
             <div className="video_details_videoPage">
               <div className="video_btns_title_VideoPage_cont">
-                <p className="video_title_VideoPage">{vv?.title}</p>
+                <p className="video_title_VideoPage">{vv?.videotitle}</p>
                 <div className="views_date_btns_VideoPage">
                   <div className="views_videoPage">
                     {vv?.views} views <div className="dot"></div>{" "}
