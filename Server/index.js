@@ -7,6 +7,7 @@ import videoroutes from './Routes/video.js'
 import userroutes from "./Routes/User.js"
 import path from 'path'
 import commentroutes from './Routes/comment.js'
+import userpointsroutes from "./Routes/userPointsRoutes.js"
 
 
 dotenv.config()
@@ -26,6 +27,7 @@ app.use(bodyParser.json())
 app.use('/user',userroutes)
 app.use('/video',videoroutes)
 app.use('/comment',commentroutes)
+app.use('/userpoints',userpointsroutes)
 const PORT= process.env.PORT || 5353
 
 

@@ -27,12 +27,14 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
   const likedvideolist = useSelector((state) => state.likedvideoreducer);
   const watchlaterlist = useSelector((s) => s.watchlaterreducer);
   useEffect(() => {
-    likedvideolist?.data
-      .filter((q) => q.videoid === vid && q.viewer === currentuser.result._id)
-      .map((m) => setlikebtn(true));
-    watchlaterlist?.data
-      .filter((q) => q.videoid === vid && q.viewer === currentuser.result._id)
-      .map((m) => setsavevideo(true));
+    if (currentuser?.result) {
+      likedvideolist?.data
+        .filter((q) => q.videoid === vid && q.viewer === currentuser.result._id)
+        .map((m) => setlikebtn(true));
+      watchlaterlist?.data
+        .filter((q) => q.videoid === vid && q.viewer === currentuser.result._id)
+        .map((m) => setsavevideo(true));
+    }
   }, []);
   const togglesavedvideo = () => {
     if (currentuser) {
@@ -70,7 +72,7 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
         setdislikebtn(false);
       }
     } else {
-      alert("please login to save video");
+      alert("please login to like video");
     }
   };
   const toggledislikevideo = (e, lk) => {
@@ -88,7 +90,7 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
         setlikebtn(false);
       }
     } else {
-      alert("please login to save video");
+      alert("please login to dislike video");
     }
   };
   return (

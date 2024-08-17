@@ -45,3 +45,10 @@ export const addtowatchlater = (watchlaterdata) =>
 export const getallwatchlater = () => API.get("/video/getallwatchlater");
 export const deletewatchlater = (videoid, viewer) =>
   API.delete(`/video/deletewatchlater/${videoid}/${viewer}`);
+
+export const updateUserPoints = (userId, pointsToAdd, videosWatchedToAdd) => {
+  API.post(`/user-points/update`, userId, pointsToAdd, videosWatchedToAdd );
+};
+export const fetchUserProfile = (userId) => {
+  API.get(`/user-points/profile/${userId}`);
+};

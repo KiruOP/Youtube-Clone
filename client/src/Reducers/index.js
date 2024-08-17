@@ -7,6 +7,8 @@ import commentreducer from "./comment";
 import historyreducer from "./history";
 import likedvideoreducer from "./likedvideo";
 import watchlaterreducer from "./watchlater";
+import userPointsReducer from "./userPointsReducer";
+
 export default combineReducers({
   authreducer,
   currentuserreducer,
@@ -16,4 +18,5 @@ export default combineReducers({
   historyreducer,
   likedvideoreducer,
   watchlaterreducer,
+  userPointsReducer,
 });

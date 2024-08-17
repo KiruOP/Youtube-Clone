@@ -8,14 +8,14 @@ const Showvideo = ({ vid }) => {
     <>
       <Link to={`/videopage/${vid._id}`}>
         <video
-          src={`http://localhost:3000/${vid.video_src}`}
+          src={`http://localhost:5353/${vid.filepath}`}
           className="video_ShowVideo"
         />
       </Link>
       <div className="video_description">
         <div className="Chanel_logo_App">
           <div className="fstChar_logo_App">
-            <>`{vid?.uploader?.charAt(0).toUpperCase()}</>
+            <>{vid?.uploader?.charAt(0).toUpperCase()}</>
           </div>
         </div>
 

@@ -9,17 +9,7 @@ const Comment = ({ videoid }) => {
     const [commenttext, setcommentext] = useState("")
     const currentuser = useSelector(state => state.currentuserreducer);
     const commentlist = useSelector(state => state.commentreducer)
-    console.log(commentlist)
-    // const commentlist=[{
-    //     _id:1,
-    //     commentbody:"hello",
-    //     usercommented:"Abc"
-    // },
-    // {
-    //     _id:2,
-    //     commentbody:"hello2",
-    //     usercommented:"Abc2"
-    // }];
+    
     const handleonsubmit = (e) => {
         e.preventDefault();
         if (currentuser) {
@@ -48,11 +38,10 @@ const Comment = ({ videoid }) => {
                 <input type="submit" value="add" className='comment_add_btn_comments' />
             </form>
             <div className="display_comment_container">
-                {commentlist?.data.filter((q) => videoid === q?.videoid)
+                {commentlist?.data?.filter((q) => videoid === q?.videoid)
                     .reverse()
                     .map((m) => {
-
-                        return (<Displaycommment cid={m._id} userid={m.userid} commentbody={m.commentbody} commenton={m.commenton} usercommented={m.usercommented} />)
+                        return (<Displaycommment key={m._id} cid={m._id} userid={m.userid} commentbody={m.commentbody} commenton={m.commenton} usercommented={m.usercommented} />)
                     })}
             </div>
         </>

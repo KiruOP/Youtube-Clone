@@ -30,6 +30,7 @@
   border: 2px solid transparent;
 }
 video {
+  width: 100%;
   background-color: rgba(8, 8, 8, 0.662);
 }
 .dot {

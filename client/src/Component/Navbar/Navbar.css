@@ -14,12 +14,9 @@
     flex-direction: column;
     cursor: pointer;
     justify-content: space-evenly;
-    margin: 0.2rem;
     padding: 0.5rem;
-    border: 1 px solid transparent;
     margin-left: 0.5rem;
     margin-right: 0.7rem;
-    border-radius: 100%;
 }
 .burger p{
     margin: 0.5px;
@@ -45,12 +42,21 @@
     justify-content: space-around;
     
 }
-.appBox{
-    border: 1px solid white;
-    margin: 0.1rem;
-    width: 2px;
-    height: 2px;
+
+.user_points_rewards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
+
+.user_points{
+    height: 20px;
+    width: 20px;
+    font-size: 18px;
+    color: white;
+}
+
 .Auth_cont_Navbar{
     width: fit-content;
     margin: auto 0.5rem;
