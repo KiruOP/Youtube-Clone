@@ -4,10 +4,8 @@ import Auth from "../../Pages/Auth/Auth";
 import { login } from "../../action/auth";
 import Searchbar from "./Searchbar/Searchbar";
 import { setcurrentuser } from "../../action/currentuser";
-// import { getUserPoints } from "../../action/userPointsActions.js";
-
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // Correct import for jwt-decode
+import { jwtDecode } from "jwt-decode";
 import { BiUserCircle } from "react-icons/bi";
 import { RiVideoAddLine } from "react-icons/ri";
 import React, { useState, useEffect } from "react";
@@ -15,15 +13,20 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
+import useUserPoint from "./useUserPoints.js"
+import Popup from "./Popup"; // Import the Popup component
 
 const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
   const [authbtn, setauthbtn] = useState(false);
   const [user, setuser] = useState(null);
   const [profile, setprofile] = useState([]);
+  const [showPopup, setShowPopup] = useState(false); // State to control the popup
   const dispatch = useDispatch();
 
   const currentuser = useSelector((state) => state.currentuserreducer);
-  // const { points, videosWatched } = useSelector((state) => state.userPointsReducer);
+  const { UserId, points, videosWatched } = useSelector(
+    (state) => state.userPointsReducer
+  );
 
   const google_login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
@@ -57,15 +60,6 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
         });
     }
   }, [user, profile.email, dispatch]);
-
-  // useEffect(() => {
-  //   if (currentuser?.result) {
-  //     userpoint?.data
-  //       .filter((q) => q.UserId === currentuser.result._id)
-  //       .map((m) => { });
-  //     filter();
-  //   }
-  // }, []);
 
   const logout = () => {
     dispatch(setcurrentuser(null));
@@ -134,7 +128,10 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
 
         {currentuser ? (
           <>
-            <div className="user_points_rewards">
+            <div
+              className="user_points_rewards"
+              onClick={() => setShowPopup(true)} // Show popup on click
+            >
               <svg
                 className="w-6 h-6 text-gray-800 dark:text-white"
                 aria-hidden="true"
@@ -151,8 +148,8 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
                   d="m7.171 12.906-2.153 6.411 2.672-.89 1.568 2.34 1.825-5.183m5.73-2.678 2.154 6.411-2.673-.89-1.568 2.34-1.825-5.183M9.165 4.3c.58.068 1.153-.17 1.515-.628a1.681 1.681 0 0 1 2.64 0 1.68 1.68 0 0 0 1.515.628 1.681 1.681 0 0 1 1.866 1.866c-.068.58.17 1.154.628 1.516a1.681 1.681 0 0 1 0 2.639 1.682 1.682 0 0 0-.628 1.515 1.681 1.681 0 0 1-1.866 1.866 1.681 1.681 0 0 0-1.516.628 1.681 1.681 0 0 1-2.639 0 1.681 1.681 0 0 0-1.515-.628 1.681 1.681 0 0 1-1.867-1.866 1.681 1.681 0 0 0-.627-1.515 1.681 1.681 0 0 1 0-2.64c.458-.361.696-.935.627-1.515A1.681 1.681 0 0 1 9.165 4.3ZM14 9a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
                 />
               </svg>
-              {/* <p className="user_points">{points}</p>
-              <p className="user_points">{videosWatched}</p> */}
+              <p className="user_points">{points}</p>
+              <p className="user_points">{videosWatched}</p>
             </div>
           </>
         ) : (
@@ -189,6 +186,13 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
           user={currentuser}
         />
       )}
+      {showPopup && (
+          <Popup
+            points={points}
+            videosWatched={videosWatched}
+            onClose={() => setShowPopup(false)}
+          />
+        )}
     </>
   );
 };
