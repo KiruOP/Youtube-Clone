@@ -3,9 +3,8 @@ const API = axios.create({ baseURL: `http://localhost:5353/` });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
-    req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem("Profile")).token
-    }`;
+    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("Profile")).token
+      }`;
   }
   return req;
 });
@@ -13,6 +12,7 @@ API.interceptors.request.use((req) => {
 export const login = (authdata) => API.post("/user/login", authdata);
 export const updatechaneldata = (id, updatedata) =>
   API.patch(`/user/update/${id}`, updatedata);
+
 export const fetchallchannel = () => API.get("/user/getallchannel");
 
 export const uploadvideo = (filedata, fileoption) =>
@@ -46,9 +46,7 @@ export const getallwatchlater = () => API.get("/video/getallwatchlater");
 export const deletewatchlater = (videoid, viewer) =>
   API.delete(`/video/deletewatchlater/${videoid}/${viewer}`);
 
-export const updateUserPoints = (userId, pointsToAdd, videosWatchedToAdd) => {
-  API.post(`/user-points/update`, userId, pointsToAdd, videosWatchedToAdd );
-};
-export const fetchUserProfile = (userId) => {
-  API.get(`/user-points/profile/${userId}`);
-};
+export const updatePoints = (UserId, pointsdata) =>
+  API.patch(`/userpoints/update/${UserId}`, { pointsdata });
+export const getUserPoints = () =>
+  API.get('/userpoints/getuserpoints');

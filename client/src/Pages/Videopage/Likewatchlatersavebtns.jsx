@@ -53,7 +53,6 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
       alert("please login to save video");
     }
   };
-  // console.log(vid,vv.Like)
   const togglelikevideo = (e, lk) => {
     if (currentuser) {
       if (likebtn) {

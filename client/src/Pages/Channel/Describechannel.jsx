@@ -16,7 +16,6 @@ const channel=useSelector(state=>state.chanelreducer)
 
 const currentchannel=channel.filter((c)=>c._id=== cid)[0]
 const currentuser=useSelector(state => state.currentuserreducer);
-// console.log(currentchannel)
   return (
     <div className="container3_chanel">
       <div className="chanel_logo_chanel">

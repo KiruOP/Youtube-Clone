@@ -9,7 +9,6 @@ const Createeditchannel = ({seteditcreatechanelbtn}) => {
     const currentuser=useSelector(state => state.currentuserreducer);
     const [name,setaname]=useState(currentuser?.result.name)
     const[desc,setdesc]=useState(currentuser?.result?.desc)
-    console.log(name,desc,currentuser)
     const handlesubmit=()=>{
         if(!name){
             alert("Please enter name!!")

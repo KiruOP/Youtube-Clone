@@ -1,22 +1,29 @@
-import React, { useRef, useState, useEffect } from 'react';
-import Hammer from 'hammerjs';
+import React, { useRef, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Hammer from "hammerjs";
+import useUserPoints from '../Navbar/useUserPoints.js'; // Import the custom hook
+
+// import { updatePoints, getUserPoints } from "../../action/userPointsActions.js";
 
 const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
-    const videoRef = useRef(null);
-    const [playbackRate, setPlaybackRate] = useState(1);
-    const [tapCount, setTapCount] = useState(0);
-  
+  const videoRef = useRef(null);
+  const [tapCount, setTapCount] = useState(0);
+  const dispatch = useDispatch();
+  const currentuser = useSelector((state) => state.currentuserreducer);
+  const currentUserId = currentuser?.result?._id;
+  const { updatePoints } = useUserPoints(currentUserId);
+
   useEffect(() => {
     if (!videoRef.current) return;
     // Initialize Hammer.js
     const hammer = new Hammer(videoRef.current);
 
-    hammer.on('tap', (e) => {
+    hammer.on("tap", (e) => {
       videoRef.current.lastTapEvent = e;
       setTapCount((prev) => prev + 1);
     });
 
-    hammer.on('press', (e) => {
+    hammer.on("press", (e) => {
       const { clientX } = e.pointers[0];
       const { width } = videoRef.current.getBoundingClientRect();
       if (clientX < width / 3) {
@@ -26,8 +33,8 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
       }
     });
 
-    hammer.on('pressup', () => {
-        videoRef.current.playbackRate = 1;
+    hammer.on("pressup", () => {
+      videoRef.current.playbackRate = 1;
     });
 
     return () => {
@@ -55,7 +62,7 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
   }, [tapCount]);
 
   const handleSingleTap = () => {
-        const lastTapEvent = videoRef.current?.lastTapEvent;
+    const lastTapEvent = videoRef.current?.lastTapEvent;
 
     if (!lastTapEvent) return;
 
@@ -69,15 +76,11 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
     if (clientX > (2 * width) / 3 && clientY < height / 3) {
       // Single-tap on top-right corner
       showLocation();
-    } else if (clientX < width / 3) {
-      // Single-tap left
-      videoRef.current.currentTime -= 10;
-    } else if (clientX > (2 * width) / 3) {
-      // Single-tap right
-      videoRef.current.currentTime += 10;
-    } else {
+    } else if (clientX = (2 * width) / 3) {
       // Single-tap middle
-      videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
+      videoRef.current.paused
+        ? videoRef.current.play()
+        : videoRef.current.pause();
     }
   };
 
@@ -126,46 +129,26 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
     }
   };
 
-//   const handleTap = (e) => {
-//     videoRef.current.lastTapEvent = e;
-//     setTapCount((prev) => prev + 1);
-//   };
-
-//   const handleHold = (e) => {
-//     const { clientX } = e.pointers[0];
-//     const { width } = videoRef.current.getBoundingClientRect();
-
-//     if (clientX < width / 3) {
-//       // Hold left
-//       videoRef.current.playbackRate = 0.5;
-//     } else if (clientX > (2 * width) / 3) {
-//       // Hold right
-//       videoRef.current.playbackRate = 2;
-//     }
-//   };
-
-//   const handleRelease = () => {
-//     videoRef.current.playbackRate = 1;
-//   };
-
   const handleKeyboardControls = (e) => {
     switch (e.key) {
-      case 'ArrowRight':
+      case "ArrowRight":
         videoRef.current.currentTime += 10;
         break;
-      case 'ArrowLeft':
+      case "ArrowLeft":
         videoRef.current.currentTime -= 10;
         break;
-      case ' ':
-        videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
+      case " ":
+        videoRef.current.paused
+          ? videoRef.current.play()
+          : videoRef.current.pause();
         break;
-      case 'n':
+      case "n":
         nextVideo();
         break;
-      case 'c':
+      case "c":
         showComments();
         break;
-      case 'l':
+      case "l":
         showLocation();
         break;
       default:
@@ -184,33 +167,38 @@ const VideoPlayer = ({ videoSrc, nextVideo, showComments, showLocation }) => {
     } else if (clientX > (2 * width) / 3) {
       videoRef.current.currentTime += 10;
     } else {
-      videoRef.current.paused ? videoRef.current.play() : videoRef.current.pause();
+      videoRef.current.paused
+        ? videoRef.current.play()
+        : videoRef.current.pause();
     }
   };
 
-  
   useEffect(() => {
     const currentVideoRef = videoRef.current;
 
     if (currentVideoRef) {
-      window.addEventListener('keydown', handleKeyboardControls);
-      currentVideoRef.addEventListener('click', handleMouseClick);
+      window.addEventListener("keydown", handleKeyboardControls);
+      currentVideoRef.addEventListener("click", handleMouseClick);
     }
-
     return () => {
       if (currentVideoRef) {
-        window.removeEventListener('keydown', handleKeyboardControls);
-        currentVideoRef.removeEventListener('click', handleMouseClick);
+        window.removeEventListener("keydown", handleKeyboardControls);
+        currentVideoRef.removeEventListener("click", handleMouseClick);
       }
     };
   }, [videoRef.current]);
 
+  const handleVideoWatched = () => {
+    updatePoints()
+  };
+
   return (
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          controls
-        />
+    <video
+      ref={videoRef}
+      src={videoSrc}
+      controls
+      onEnded={handleVideoWatched}
+    />
   );
 };
 

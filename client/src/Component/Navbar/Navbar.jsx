@@ -13,8 +13,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
-import useUserPoint from "./useUserPoints.js"
-import Popup from "./Popup"; // Import the Popup component
+import useUserPoints from './useUserPoints'; // Import the custom hook
+import Popup from './Popup'; // Import the Popup component
 
 const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
   const [authbtn, setauthbtn] = useState(false);
@@ -22,17 +22,16 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
   const [profile, setprofile] = useState([]);
   const [showPopup, setShowPopup] = useState(false); // State to control the popup
   const dispatch = useDispatch();
-
   const currentuser = useSelector((state) => state.currentuserreducer);
-  const { UserId, points, videosWatched } = useSelector(
-    (state) => state.userPointsReducer
-  );
+  const currentUserId = currentuser?.result?._id;
+  const { updatePoints, getUserData } = useUserPoints(currentUserId);
+  const { points, videosWatched } = getUserData();
 
   const google_login = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       setuser(tokenResponse);
     },
-    onError: (error) => console.log("Login Failed", error),
+    onError: (error) => console.log('Login Failed', error),
   });
 
   useEffect(() => {
@@ -41,7 +40,6 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
         dispatch(login({ email: profile.email }));
       }
     };
-
     if (user) {
       axios
         .get(
@@ -49,14 +47,13 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
           {
             headers: {
               Authorization: `Bearer ${user.access_token}`,
-              Accept: "application/json",
+              Accept: 'application/json',
             },
           }
         )
         .then((res) => {
           setprofile(res.data);
           successlogin();
-          // dispatch(getUserPoints());
         });
     }
   }, [user, profile.email, dispatch]);
@@ -75,7 +72,7 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
         logout();
       }
     }
-    dispatch(setcurrentuser(JSON.parse(localStorage.getItem("Profile"))));
+    dispatch(setcurrentuser(JSON.parse(localStorage.getItem('Profile'))));
   }, [currentuser?.token, dispatch]);
 
   return (
@@ -117,22 +114,17 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
             viewBox="0 0 24 24"
           >
             <path
-              fillRule="evenodd" // Corrected property
-              clipRule="evenodd" // Corrected property
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M4.857 3A1.857 1.857 0 0 0 3 4.857v4.286C3 10.169 3.831 11 4.857 11h4.286A1.857 1.857 0 0 0 11 9.143V4.857A1.857 1.857 0 0 0 9.143 3H4.857Zm10 0A1.857 1.857 0 0 0 13 4.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 21 9.143V4.857A1.857 1.857 0 0 0 19.143 3h-4.286Zm-10 10A1.857 1.857 0 0 0 3 14.857v4.286C3 20.169 3.831 21 4.857 21h4.286A1.857 1.857 0 0 0 11 19.143v-4.286A1.857 1.857 0 0 0 9.143 13H4.857Zm10 0A1.857 1.857 0 0 0 13 14.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 21 19.143v-4.286A1.857 1.857 0 0 0 19.143 13h-4.286Z"
             />
           </svg>
         </div>
-
         <IoMdNotificationsOutline size={22} className={"vid_bell_Navbar"} />
-
         {currentuser ? (
           <>
-            <div
-              className="user_points_rewards"
-              onClick={() => setShowPopup(true)} // Show popup on click
-            >
-              <svg
+            <div className="user_points_rewards" onClick={() => setShowPopup(true)}>
+            <svg
                 className="w-6 h-6 text-gray-800 dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -149,13 +141,12 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
                 />
               </svg>
               <p className="user_points">{points}</p>
-              <p className="user_points">{videosWatched}</p>
             </div>
+            {/* <button onClick={updatePoints}>Watch Video</button> */}
           </>
         ) : (
           <></>
         )}
-
         <div className="Auth_cont_Navbar">
           {currentuser ? (
             <>
@@ -172,27 +163,18 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
           ) : (
             <>
               <p className="Auth_Btn" onClick={() => google_login()}>
-                <BiUserCircle size={22} />
-                <b>Sign in</b>
+                <BiUserCircle size={22} /> <b>Sign in</b>
               </p>
             </>
           )}
         </div>
       </div>
       {authbtn && (
-        <Auth
-          seteditcreatechanelbtn={seteditcreatechanelbtn}
-          setauthbtn={setauthbtn}
-          user={currentuser}
-        />
+        <Auth setauthbtn={setauthbtn} seteditcreatechanelbtn={seteditcreatechanelbtn} user={currentuser}/>
       )}
       {showPopup && (
-          <Popup
-            points={points}
-            videosWatched={videosWatched}
-            onClose={() => setShowPopup(false)}
-          />
-        )}
+        <Popup points={points} videosWatched={videosWatched} onClose={() => setShowPopup(false)} />
+      )}
     </>
   );
 };

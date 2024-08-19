@@ -36,7 +36,6 @@ const Videoupload = ({ setvideouploadpage }) => {
       filedata.append("title", title);
       filedata.append("chanel", currentuser?.result?._id);
       filedata.append("uploader", currentuser?.result.name);
-      // console.log(videofile)
       dispatch(uploadvideo({ filedata: filedata, fileoption: fileoption }));
     }
   };

@@ -1,8 +1,9 @@
 import users from "../Models/Auth.js";
+import UserPoints from "../Models/UserPoints.js";
 import jwt from "jsonwebtoken";
+
 export const login = async (req, res) => {
   const { email } = req.body;
-  // console.log(email)
   try {
     const extinguser = await users.findOne({ email });
     if (!extinguser) {
@@ -18,6 +19,11 @@ export const login = async (req, res) => {
             expiresIn: "1h",
           }
         );
+
+        //Creating profile for userPoints when the new login
+        const UserId = newuser._id;
+        const userPoints = new UserPoints({ UserId: UserId });
+        await userPoints.save();
         res.status(200).json({ result: newuser, token });
       } catch (error) {
         res.status(500).json({ mess: "something went wrong..." });

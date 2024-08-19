@@ -13,6 +13,9 @@ const CustomControls = ({ onPlayPause, onForward, onBackward, isPlaying }) => {
       <button onClick={onForward} className="control-button">
         +10s
       </button>
+      <button onClick={onForward} className="control-button">
+        <span>{">"}</span>
+      </button>
     </div>
   );
 };

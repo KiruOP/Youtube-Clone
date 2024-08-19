@@ -1,24 +1,21 @@
-import { updateUserPoints, fetchUserProfile } from "../Api";
+import * as api from "../Api";
 
 // Action Creators
-export const updatePoints = (userId, pointsToAdd, videosWatchedToAdd) => async dispatch => {
-    dispatch({ type: "UPDATE_USER_POINTS_REQUEST" });
-
+export const updatePoints = (UserId, pointsdata) => async (dispatch) => {
     try {
-        updateUserPoints(userId, pointsToAdd, videosWatchedToAdd);
-        dispatch({ type: "UPDATE_USER_POINTS_SUCCESS" });
+        const { data } = await api.updatePoints(UserId, pointsdata);
+        dispatch({ type: 'UPDATE_USER_POINTS', payload: data });
+        dispatch(getUserPoints());
     } catch (error) {
-        dispatch({ type: "UPDATE_USER_POINTS_FAILURE", payload: error.message });
+        console.error('Error in updatePoints action:', error);
     }
 };
 
-export const getUserProfile = (userId) => async dispatch => {
-    dispatch({ type: "FETCH_USER_PROFILE_REQUEST" });
-
+export const getUserPoints = () => async (dispatch) => {
     try {
-        const response = fetchUserProfile(userId);
-        dispatch({ type: "FETCH_USER_PROFILE_SUCCESS", payload: response.data });
+        const { data } = await api.getUserPoints();
+        dispatch({ type: 'FETCH_USER_POINTS', payload: data });
     } catch (error) {
-        dispatch({ type: "FETCH_USER_PROFILE_FAILURE", payload: error.message });
+        console.error('Error in getUserPoints action:', error);
     }
 };

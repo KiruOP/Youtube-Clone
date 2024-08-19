@@ -7,7 +7,7 @@ export const updatechaneldata=async(req,res)=>{
         return res.status(400).send("Channel unavailable..")
     }
     try {
-        const updatedata=await users.findByIdAndUpdate(
+        const updatedata = await users.findByIdAndUpdate(
             _id,{
                 $set:{
                     name:name,

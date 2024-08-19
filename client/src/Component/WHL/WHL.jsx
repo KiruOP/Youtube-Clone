@@ -5,7 +5,6 @@ import WHLvideolist from "./WHLvideolist"
 import { useSelector,useDispatch } from 'react-redux'
 import { clearhistory } from '../../action/history'
 const WHL = ({page,videolist}) => {
-    // console.log(videolist)
     const currentuser=useSelector(state => state.currentuserreducer);
     const dispatch=useDispatch()
     const handleclearhistory=()=>{

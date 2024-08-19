@@ -1,18 +1,19 @@
 import mongoose from "mongoose";
 
 const userPointsSchema = new mongoose.Schema({
-    userId: {
+    UserId: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     points: {
         type: Number,
-        default: 0
+        default: 0,
     },
     videosWatched: {
         type: Number,
-        default: 0    
+        default: 0,
     },
 });
 
-export default mongoose.model('UserPoints', userPointsSchema);
+export default mongoose.model("UserPoints", userPointsSchema);

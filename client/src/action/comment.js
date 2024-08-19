@@ -23,7 +23,6 @@ export const postcomment=(commentdata)=>async(dispatch)=>{
 export const getallcomment=()=>async(dispatch)=>{
     try {
         const {data}=await api.getallcomment()
-        // console.log(data)
         dispatch({type:"FETCH_ALL_COMMENTS",payload:data})
     } catch (error) {
         console.log(error)

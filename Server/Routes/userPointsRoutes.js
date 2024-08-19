@@ -1,17 +1,14 @@
 import express from 'express';
 import { 
     updateUserPoints, 
-    getCurrentUserProfile
+    getUserPoints
 } from '../Controllers/UserPoints.js';
-import auth from "../middleware/auth.js"
-
-
 const router = express.Router();
 
-// Route to update points and videos watched for the current logged-in user
-router.post('/update',auth, updateUserPoints);
+// Route to fetch user points
+router.get('/getuserpoints', getUserPoints);
 
-// Route to get the current user's profile
-router.get('/profile/:userId', getCurrentUserProfile);
+// Route to update user points
+router.patch('/update/:UserId', updateUserPoints);
 
 export default router;

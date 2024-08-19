@@ -15,7 +15,7 @@
 .container_videoList_LibraryPage{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     margin: 0;
     max-height: 80vh;
     overflow-y: auto;

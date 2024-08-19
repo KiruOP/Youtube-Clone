@@ -52,7 +52,7 @@
 
 .user_points{
     height: 20px;
-    width: 20px;
+    width: fit-content;
     font-size: 18px;
     color: white;
 }
