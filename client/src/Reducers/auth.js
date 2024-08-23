@@ -3,7 +3,6 @@ const authreducer = (state = { data: null }, actions) => {
     case "AUTH":
       localStorage.setItem("Profile", JSON.stringify({ ...actions?.data }));
       return { ...state, data: actions?.data };
-
     default:
       return state;
   }

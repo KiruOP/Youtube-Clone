@@ -7,4 +7,5 @@ const commentschema = mongoose.Schema({
     usercommented: String,
     commentedon: { type: Date, default: Date.now }
 })
-export default mongoose.model("Comments", commentschema)
+
+export default mongoose.model("Comments", commentschema);

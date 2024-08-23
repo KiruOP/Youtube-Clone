@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import "./Searchlist.css";
+
 const Searchlist = ({ Titlearray, setsearchquery }) => {
   return (
     <>

@@ -26,6 +26,7 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
   const currentuser = useSelector((state) => state.currentuserreducer);
   const likedvideolist = useSelector((state) => state.likedvideoreducer);
   const watchlaterlist = useSelector((s) => s.watchlaterreducer);
+
   useEffect(() => {
     if (currentuser?.result) {
       likedvideolist?.data
@@ -36,6 +37,7 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
         .map((m) => setsavevideo(true));
     }
   }, []);
+
   const togglesavedvideo = () => {
     if (currentuser) {
       if (savevideo) {
@@ -53,11 +55,11 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
       alert("please login to save video");
     }
   };
+
   const togglelikevideo = (e, lk) => {
     if (currentuser) {
       if (likebtn) {
         setlikebtn(false);
-
         dispatch(likevideo({ id: vid, Like: lk - 1 }));
         dispatch(
           deletelikedvideo({ videoid: vid, viewer: currentuser?.result?._id })
@@ -74,6 +76,7 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
       alert("please login to like video");
     }
   };
+
   const toggledislikevideo = (e, lk) => {
     if (currentuser) {
       if (dislikebtn) {
@@ -92,6 +95,7 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
       alert("please login to dislike video");
     }
   };
+
   return (
     <div className="btns_cont_videoPage">
       <div className="btn_VideoPage">
@@ -103,13 +107,9 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
           onClick={(e) => togglelikevideo(e, vv.Like)}
         >
           {likebtn ? (
-            <>
-              <AiFillLike size={22} className="btns_videoPage" />
-            </>
+            <AiFillLike size={22} className="btns_videoPage" />
           ) : (
-            <>
-              <AiOutlineLike size={22} className="btns_videoPage" />
-            </>
+            <AiOutlineLike size={22} className="btns_videoPage" />
           )}
           <b>{vv?.Like}</b>
         </div>
@@ -118,13 +118,9 @@ const Likewatchlatersavebtns = ({ vv, vid }) => {
           onClick={(e) => toggledislikevideo(e, vv?.Like)}
         >
           {dislikebtn ? (
-            <>
-              <AiFillDislike size={22} className="btns_videoPage" />
-            </>
+            <AiFillDislike size={22} className="btns_videoPage" />
           ) : (
-            <>
-              <AiOutlineDislike size={22} className="btns_videoPage" />
-            </>
+            <AiOutlineDislike size={22} className="btns_videoPage" />
           )}
           <b>DISLIKE</b>
         </div>

@@ -1,5 +1,4 @@
 // reducers/userReducer.js
-import { UPDATE_POINTS } from '../action/pointsAction.js';
 
 const initialState = {
   points: 0,

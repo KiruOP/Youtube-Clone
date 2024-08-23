@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const videofileschema = new mongoose.Schema(
   {
     videotitle: {
@@ -41,4 +42,5 @@ const videofileschema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
 export default mongoose.model("Videofiles", videofileschema);

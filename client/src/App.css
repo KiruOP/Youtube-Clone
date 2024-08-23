@@ -6,6 +6,7 @@
   background-color: rgb(224, 227, 214);
   display: flex;
 }
+
 .fstChar_logo_App {
   margin: auto;
   color: black;
@@ -17,22 +18,26 @@
   display: flex;
   background-color: rgb(19, 19, 19);
 }
+
 .container2_Pages_App {
   width: calc(100vw - 5rem);
   height: calc(100vh - 3.65rem);
   border-top: 2px solid rgb(128, 128, 128, 0.45);
   overflow-y: auto;
 }
+
 .video_box_app {
   width: 21rem;
   height: 17rem;
   margin-bottom: 1rem;
   border: 2px solid transparent;
 }
+
 video {
   width: 100%;
   background-color: rgba(8, 8, 8, 0.662);
 }
+
 .dot {
   height: 4px;
   width: 4px;

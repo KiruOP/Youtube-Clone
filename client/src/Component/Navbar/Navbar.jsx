@@ -13,8 +13,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
-import useUserPoints from './useUserPoints'; // Import the custom hook
-import Popup from './Popup'; // Import the Popup component
+import useUserPoints from './useUserPoints';
+import Popup from './Popup';
 
 const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
   const [authbtn, setauthbtn] = useState(false);
@@ -124,7 +124,7 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
         {currentuser ? (
           <>
             <div className="user_points_rewards" onClick={() => setShowPopup(true)}>
-            <svg
+              <svg
                 className="w-6 h-6 text-gray-800 dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,6 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
               </svg>
               <p className="user_points">{points}</p>
             </div>
-            {/* <button onClick={updatePoints}>Watch Video</button> */}
           </>
         ) : (
           <></>
@@ -170,7 +169,7 @@ const Navbar = ({ toggledrawer, seteditcreatechanelbtn }) => {
         </div>
       </div>
       {authbtn && (
-        <Auth setauthbtn={setauthbtn} seteditcreatechanelbtn={seteditcreatechanelbtn} user={currentuser}/>
+        <Auth setauthbtn={setauthbtn} seteditcreatechanelbtn={seteditcreatechanelbtn} user={currentuser} />
       )}
       {showPopup && (
         <Popup points={points} videosWatched={videosWatched} onClose={() => setShowPopup(false)} />

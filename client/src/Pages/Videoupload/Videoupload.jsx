@@ -3,33 +3,39 @@ import "./Videoupload.css";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { useSelector, useDispatch } from "react-redux";
 import { uploadvideo } from "../../action/video";
+
 const Videoupload = ({ setvideouploadpage }) => {
   const [title, settitle] = useState("");
   const [videofile, setvideofile] = useState("");
   const [progress, setprogress] = useState(0);
   const dispatch = useDispatch();
+  
   const handlesetvideofile = (e) => {
     setvideofile(e.target.files[0]);
   };
+  
   const currentuser = useSelector((state) => state.currentuserreducer);
+  
   const fileoption = {
     onUploadProgress: (progressEvent) => {
       const { loaded, total } = progressEvent;
       const percentage = Math.floor(((loaded / 1000) * 100) / (total / 1000));
       setprogress(percentage);
+      
       if (percentage === 100) {
-        setTimeout(function () {}, 3000);
+        setTimeout(function () { }, 3000);
         setvideouploadpage(false);
       }
     },
   };
+  
   const uploadvideofile = () => {
     if (!title) {
-      alert("plz enter a title of the video");
+      alert("Please enter a title for the video");
     } else if (!videofile) {
-      alert("plz attach a video file");
+      alert("Please attach a video file");
     } else if (videofile.size > 1000000) {
-      alert("Plz attach video file less than 1 kb");
+      alert("Please attach a video file less than 1 mb");
     } else {
       const filedata = new FormData();
       filedata.append("file", videofile);
@@ -39,6 +45,7 @@ const Videoupload = ({ setvideouploadpage }) => {
       dispatch(uploadvideo({ filedata: filedata, fileoption: fileoption }));
     }
   };
+  
   return (
     <div className="container_VidUpload">
       <input

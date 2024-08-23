@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useRef } from "react";
-import "./Videopage.css";
-import moment from "moment";
-import Likewatchlatersavebtns from "./Likewatchlatersavebtns";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Comment from "../../Component/Comment/Comment";
+import moment from "moment";
+import { useSelector, useDispatch } from "react-redux";
 import { viewvideo } from "../../action/video";
 import { addtohistory } from "../../action/history";
-import { useSelector, useDispatch } from "react-redux";
-import { isWithinAllowedTime } from '../../Component/utils/timeUtils.js';
+import { isWithinAllowedTime } from "../../Component/utils/timeUtils.js";
 import VideoPlayer from "../../Component/VideoPlayer/Videoplayer.jsx";
+import Likewatchlatersavebtns from "./Likewatchlatersavebtns";
+import Comment from "../../Component/Comment/Comment";
+import "./Videopage.css";
 
 const Videopage = () => {
   const { vid } = useParams();
@@ -18,9 +18,11 @@ const Videopage = () => {
   const canMakeCall = isWithinAllowedTime();
 
   const currentuser = useSelector((state) => state.currentuserreducer);
+
   const handleviews = () => {
     dispatch(viewvideo({ id: vid }));
   };
+
   const handlehistory = () => {
     dispatch(
       addtohistory({
@@ -29,6 +31,7 @@ const Videopage = () => {
       })
     );
   };
+
   useEffect(() => {
     if (currentuser) {
       handlehistory();
@@ -36,7 +39,6 @@ const Videopage = () => {
     handleviews();
   }, []);
 
-  //Task 2: Functions Starts Here
   const [currentVideo, setCurrentVideo] = useState(
     `http://localhost:5353/${vv?.filepath}`
   );
@@ -55,8 +57,6 @@ const Videopage = () => {
     console.log("showLocation");
     // Logic to show location and temperature
   };
-
-  //Task 2: Functions Ends Here
 
   return (
     <>
@@ -88,7 +88,6 @@ const Videopage = () => {
                   <p>Video calls are only available between 6 PM and 12 AM.</p>
                 )}
               </div>
-
               <Link to={"/"} className="chanel_details_videoPage">
                 <b className="chanel_logo_videoPage">
                   <p>{vv?.uploader.charAt(0).toUpperCase()}</p>

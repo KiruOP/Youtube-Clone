@@ -2,12 +2,13 @@ import React from "react";
 import "./Showvideo.css";
 import { Link } from "react-router-dom";
 import moment from "moment";
+
 const Showvideo = ({ vid }) => {
   return (
     <>
       <Link to={`/videopage/${vid._id}`}>
         <video
-          src={`http://localhost:5353/${vid.filepath}`}
+          src={`http://localhost:5353//${vid.filepath}`}
           className="video_ShowVideo"
         />
       </Link>
@@ -17,7 +18,6 @@ const Showvideo = ({ vid }) => {
             <>{vid?.uploader?.charAt(0).toUpperCase()}</>
           </div>
         </div>
-
         <div className="video_details">
           <p className="title_vid_ShowVideo">{vid?.videotitle}</p>
           <pre className="vid_views_UploadTime">{vid?.uploader}</pre>

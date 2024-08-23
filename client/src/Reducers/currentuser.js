@@ -6,4 +6,5 @@ const currentuserreducer = (state = null, action) => {
       return state;
   }
 };
+
 export default currentuserreducer;

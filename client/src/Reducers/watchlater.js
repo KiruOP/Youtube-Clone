@@ -8,4 +8,5 @@ const watchlaterreducer = (state = { data: null }, action) => {
       return state;
   }
 };
+
 export default watchlaterreducer;

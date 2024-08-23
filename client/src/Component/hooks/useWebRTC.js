@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Peer from 'simple-peer';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:5353');
+const socket = io('http://localhost:5353/'); 
 
 function useWebRTC(localVideoRef, remoteVideoRef) {
     const [peer, setPeer] = useState(null);

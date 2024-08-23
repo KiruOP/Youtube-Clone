@@ -1,5 +1,5 @@
 import React from "react";
-import "./Popup.css"; // Add your popup styles here
+import "./Popup.css";
 
 const Popup = ({ points, videosWatched, onClose }) => {
   return (

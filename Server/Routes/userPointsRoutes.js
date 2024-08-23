@@ -1,6 +1,6 @@
 import express from 'express';
-import { 
-    updateUserPoints, 
+import {
+    updateUserPoints,
     getUserPoints
 } from '../Controllers/UserPoints.js';
 const router = express.Router();

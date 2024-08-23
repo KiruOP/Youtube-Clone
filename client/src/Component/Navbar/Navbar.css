@@ -1,15 +1,17 @@
-.Container_Navbar{
+.Container_Navbar {
     border: 1px solid;
     display: flex;
     height: calc(3.5rem - 2px);
     background-color: rgb(33, 33, 33);
     justify-content: space-between;
 }
-.Burger_Logo_Navbar{
+
+.Burger_Logo_Navbar {
     display: flex;
     height: 3.3rem;
 }
-.burger{
+
+.burger {
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -18,55 +20,59 @@
     margin-left: 0.5rem;
     margin-right: 0.7rem;
 }
-.burger p{
+
+.burger p {
     margin: 0.5px;
     width: 1.2rem;
     height: 0.1rem;
     background-color: rgb(255, 244, 244);
 }
-.logo_div_Navbar{
+
+.logo_div_Navbar {
     display: flex;
     text-decoration: none;
 }
-.logo_title_navbar{
+
+.logo_title_navbar {
     margin: auto;
     color: white;
     font-weight: bold;
 }
-.apps_Box{
+
+.apps_Box {
     width: 25px;
     margin: auto 0.7rem;
     height: 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
 }
 
-.user_points_rewards{
+.user_points_rewards {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 
-.user_points{
+.user_points {
     height: 20px;
     width: fit-content;
     font-size: 18px;
     color: white;
 }
 
-.Auth_cont_Navbar{
+.Auth_cont_Navbar {
     width: fit-content;
     margin: auto 0.5rem;
     position: relative;
     display: flex;
 }
-.Auth_Btn{
+
+.Auth_Btn {
     cursor: pointer;
     color: #3ea6ff;
-    background-color: rgb(36,36,36);
+    background-color: rgb(36, 36, 36);
     border: 2px solid;
     margin: 0;
     padding: 0.5rem;

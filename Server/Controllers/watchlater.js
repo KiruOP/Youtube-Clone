@@ -11,6 +11,7 @@ export const watchlatercontroller = async (req, res) => {
         return
     }
 }
+
 export const getallwatchlatervontroller = async (req, res) => {
     try {
         const files = await watchlater.find()
@@ -20,13 +21,14 @@ export const getallwatchlatervontroller = async (req, res) => {
         return
     }
 }
+
 export const deletewatchlater = async (req, res) => {
     const { videoid: videoid, viewer: viewer } = req.params
     try {
         await watchlater.findOneAndDelete({
-            videoid:videoid,viewer:viewer,
+            videoid: videoid, viewer: viewer,
         })
-        res.status(200).json({message:"removed from watch later"})
+        res.status(200).json({ message: "removed from watch later" })
     } catch (error) {
         res.status(400).json(error.message)
         return
