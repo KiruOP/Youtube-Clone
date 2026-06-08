@@ -1,4 +1,5 @@
 import * as videoService from "../Services/videoService.js";
+import { uploadToCloudinary } from "../Helper/cloudinaryHelper.js";
 import mongoose from "mongoose";
 
 export const uploadVideo = async (req, res) => {
@@ -6,10 +7,12 @@ export const uploadVideo = async (req, res) => {
         return res.status(404).json({ message: "Please upload an mp4 video file only" });
     }
     try {
+        const cloudinaryUrl = await uploadToCloudinary(req.file.path);
+
         const file = await videoService.createVideo({
             videotitle: req.body.title,
             filename: req.file.originalname,
-            filepath: req.file.path,
+            filepath: cloudinaryUrl,
             filetype: req.file.mimetype,
             filesize: req.file.size,
             videochanel: req.body.chanel,

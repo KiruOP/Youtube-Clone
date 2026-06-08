@@ -69,7 +69,7 @@ const VideoPage = () => {
         <div className="container2_videoPage">
           <div className="video_display_screen_videoPage">
             <VideoPlayer
-              videoSrc={`http://localhost:5353/${vv?.filepath}`}
+              videoSrc={vv?.filepath?.startsWith("http") ? vv.filepath : `http://localhost:5353/${vv?.filepath}`}
               nextVideo={nextVideo}
               showComments={showComments}
               showLocation={showLocation}
@@ -145,7 +145,7 @@ const VideoPage = () => {
                 >
                   <div className="recommendation_thumbnail_wrapper">
                     <video
-                      src={`http://localhost:5353/${rec.filepath}`}
+                      src={rec.filepath?.startsWith("http") ? rec.filepath : `http://localhost:5353/${rec.filepath}`}
                       className="recommendation_thumbnail"
                       muted
                       preload="metadata"
