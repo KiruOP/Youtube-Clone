@@ -1,12 +1,12 @@
 import React from 'react';
-import WHL from '../../Component/WHL/WHL';
-import { useSelector } from 'react-redux';
+import WHL from '../../components/WHL/WHL';
+import usePlaylists from '../../components/hooks/usePlaylists';
 
-const Watchlater = () => {
-  const watchlatervideolist = useSelector((s) => s.watchlaterreducer);
+const WatchLater = () => {
+  const { watchLater } = usePlaylists();
   return (
-    <WHL page={"Watch Later"} videolist={watchlatervideolist} />
+    <WHL page={"Watch Later"} videolist={{ data: watchLater }} />
   )
 }
 
-export default Watchlater;
+export default WatchLater;

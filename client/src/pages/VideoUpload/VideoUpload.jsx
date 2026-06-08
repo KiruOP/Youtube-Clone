@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import "./Videoupload.css";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import { useSelector, useDispatch } from "react-redux";
-import { uploadvideo } from "../../action/video";
+import useVideos from "../../components/hooks/useVideos";
+import useAuth from "../../components/hooks/useAuth";
 
-const Videoupload = ({ setvideouploadpage }) => {
+const VideoUpload = ({ setvideouploadpage }) => {
   const [title, settitle] = useState("");
   const [videofile, setvideofile] = useState("");
   const [progress, setprogress] = useState(0);
-  const dispatch = useDispatch();
+  
+  const { uploadVideoFile } = useVideos();
+  const { currentuser } = useAuth();
   
   const handlesetvideofile = (e) => {
     setvideofile(e.target.files[0]);
   };
-  
-  const currentuser = useSelector((state) => state.currentuserreducer);
   
   const fileoption = {
     onUploadProgress: (progressEvent) => {
@@ -42,7 +42,7 @@ const Videoupload = ({ setvideouploadpage }) => {
       filedata.append("title", title);
       filedata.append("chanel", currentuser?.result?._id);
       filedata.append("uploader", currentuser?.result.name);
-      dispatch(uploadvideo({ filedata: filedata, fileoption: fileoption }));
+      uploadVideoFile(filedata, fileoption);
     }
   };
   
@@ -107,4 +107,4 @@ const Videoupload = ({ setvideouploadpage }) => {
   );
 };
 
-export default Videoupload;
+export default VideoUpload;

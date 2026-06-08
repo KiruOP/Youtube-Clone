@@ -1,12 +1,11 @@
 import React from 'react';
 import './Describechannel.css';
 import { FaEdit, FaUpload } from "react-icons/fa";
-import { useSelector } from 'react-redux';
+import useAuth from '../../components/hooks/useAuth';
 
 const Describechannel = ({ setvideouploadpage, cid, seteditcreatechanelbtn }) => {
-  const channel = useSelector(state => state.chanelreducer);
-  const currentchannel = channel.filter((c) => c._id === cid)[0];
-  const currentuser = useSelector(state => state.currentuserreducer);
+  const { currentuser, channels } = useAuth();
+  const currentchannel = channels.filter((c) => c._id === cid)[0];
 
   return (
     <div className="container3_chanel">

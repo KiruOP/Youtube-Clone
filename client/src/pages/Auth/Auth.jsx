@@ -1,18 +1,14 @@
 import React from 'react';
 import { BiLogOut } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { googleLogout } from '@react-oauth/google';
-import { useDispatch } from "react-redux";
-import { setcurrentuser } from '../../action/currentuser';
+import useAuth from '../../components/hooks/useAuth';
 import "./Auth.css";
 
 const Auth = ({ user, setauthbtn, seteditcreatechanelbtn }) => {
-    const dispatch = useDispatch();
+    const { logoutUser } = useAuth();
 
     const logout = () => {
-        dispatch(setcurrentuser(null));
-        localStorage.clear();
-        googleLogout();
+        logoutUser();
     };
 
     return (

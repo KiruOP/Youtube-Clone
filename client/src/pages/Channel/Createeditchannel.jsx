@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import './Createeditchannel.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { updatechaneldata } from '../../action/channeluser';
-import { login } from '../../action/auth';
+import useAuth from '../../components/hooks/useAuth';
 
 const Createeditchannel = ({ seteditcreatechanelbtn }) => {
-    const dispatch = useDispatch();
-    const currentuser = useSelector((state) => state.currentuserreducer);
+    const { currentuser, updateChannel, loginUser } = useAuth();
     const [name, setaname] = useState(currentuser?.result.name);
     const [desc, setdesc] = useState(currentuser?.result?.desc);
 
@@ -16,10 +13,10 @@ const Createeditchannel = ({ seteditcreatechanelbtn }) => {
         } else if (!desc) {
             alert('Please enter Description');
         } else {
-            dispatch(updatechaneldata(currentuser?.result._id, { name: name, desc: desc }));
+            updateChannel(currentuser?.result._id, { name: name, desc: desc });
             seteditcreatechanelbtn(false);
             setTimeout(() => {
-                dispatch(login({ email: currentuser.result.email }));
+                loginUser({ email: currentuser.result.email });
             }, 5000);
         }
     };

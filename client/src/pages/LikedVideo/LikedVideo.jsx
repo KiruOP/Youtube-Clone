@@ -1,12 +1,12 @@
 import React from 'react';
-import WHL from '../../Component/WHL/WHL';
-import { useSelector } from 'react-redux';
+import WHL from '../../components/WHL/WHL';
+import usePlaylists from '../../components/hooks/usePlaylists';
 
-const Likedvideo = () => {
-  const likedvideolist = useSelector((state) => state.likedvideoreducer);
+const LikedVideo = () => {
+  const { likedVideos } = usePlaylists();
   return (
-    <WHL page={"Liked Video"} videolist={likedvideolist} />
+    <WHL page={"Liked Video"} videolist={{ data: likedVideos }} />
   )
 }
 
-export default Likedvideo;
+export default LikedVideo;
