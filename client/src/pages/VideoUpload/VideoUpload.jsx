@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Videoupload.css";
+import "./VideoUpload.css";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import useVideos from "../../components/hooks/useVideos";
 import useAuth from "../../components/hooks/useAuth";
