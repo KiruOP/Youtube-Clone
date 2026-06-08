@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
-import videoroutes from './Routes/video.js';
-import userroutes from "./Routes/User.js";
+import videoroutes from './Routes/videoRoutes.js';
+import playlistroutes from './Routes/playlistRoutes.js';
+import userroutes from "./Routes/userRoutes.js";
 import path from 'path';
-import commentroutes from './Routes/comment.js';
+import commentroutes from './Routes/commentRoutes.js';
 import userpointsroutes from "./Routes/userPointsRoutes.js";
 import http from "http";
 import { Server } from "socket.io";
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
 app.use(bodyParser.json())
 app.use('/user', userroutes)
 app.use('/video', videoroutes)
+app.use('/video', playlistroutes)
 app.use('/comment', commentroutes)
 app.use('/userpoints', userpointsroutes)
 const PORT = process.env.PORT || 5353
