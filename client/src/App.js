@@ -1,21 +1,21 @@
 import "./App.css";
-import Allroutes from "../src/Allroutes";
-import Navbar from "./Component/Navbar/Navbar";
+import Allroutes from "./Allroutes";
+import Navbar from "./components/Navbar/Navbar";
 
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import Videoupload from "./Pages/Videoupload/Videoupload";
-import Createeditchannel from "./Pages/Channel/Createeditchannel";
-import Drawersliderbar from "../src/Component/Leftsidebar/Drawersliderbar";
+import VideoUpload from "./pages/VideoUpload/VideoUpload";
+import Createeditchannel from "./pages/Channel/Createeditchannel";
+import DrawerSidebar from "./components/LeftSidebar/DrawerSidebar";
 
-import { getallvideo } from "./action/video";
-import { getallcomment } from "./action/comment";
-import { getallhistory } from "./action/history";
-import { fetchallchannel } from "./action/channeluser";
-import { getalllikedvideo } from "./action/likedvideo";
-import { getallwatchlater } from "./action/watchlater";
+import { getallvideo } from "./actions/video";
+import { getallcomment } from "./actions/comment";
+import { getallhistory } from "./actions/history";
+import { fetchallchannel } from "./actions/channeluser";
+import { getalllikedvideo } from "./actions/likedvideo";
+import { getallwatchlater } from "./actions/watchlater";
 
 function App() {
   const [toggledrawersidebar, settogledrawersidebar] = useState({
@@ -48,7 +48,7 @@ function App() {
   return (
     <Router>
       {videouploadpage && (
-        <Videoupload setvideouploadpage={setvideouploadpage} />
+        <VideoUpload setvideouploadpage={setvideouploadpage} />
       )}
       {editcreatechanelbtn && (
         <Createeditchannel seteditcreatechanelbtn={seteditcreatechanelbtn} />
@@ -57,7 +57,7 @@ function App() {
         seteditcreatechanelbtn={seteditcreatechanelbtn}
         toggledrawer={toggledrawer}
       />
-      <Drawersliderbar
+      <DrawerSidebar
         toggledraw={toggledrawer}
         toggledrawersidebar={toggledrawersidebar}
       />

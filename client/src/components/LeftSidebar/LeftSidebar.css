@@ -1,0 +1,148 @@
+.container_leftSidebar {
+  background-color: var(--yt-bg);
+  width: 72px;
+  height: calc(100vh - 56px);
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.icon_sidebar_div {
+  cursor: pointer;
+  color: var(--yt-text-primary);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0 10px 0;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.icon_sidebar {
+  margin-bottom: 6px;
+  color: var(--yt-text-primary);
+}
+
+.text_sidebar_icon {
+  text-align: center;
+  font-weight: 400;
+  font-size: 10px;
+  color: var(--yt-text-primary);
+}
+
+.icon_sidebar_div:hover,
+.icon_sidebar_div.active {
+  background-color: var(--yt-hover-bg);
+}
+
+/** drawer sidebar*/
+.container_DrawaerLeftSidebar {
+  position: fixed;
+  top: 56px;
+  left: 0;
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 56px);
+  z-index: 500;
+}
+
+.container2_DrawaerLeftSidebar {
+  height: 100%;
+  overflow-y: auto;
+  background-color: var(--yt-bg);
+  width: 240px;
+  border-right: 1px solid var(--yt-border);
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.Drawer_leftsidebar,
+.libraryBtn_Drawerleftsidebar {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--yt-border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.container2_DrawaerLeftSidebar .icon_sidebar_div {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 24px;
+  border-radius: 10px;
+}
+
+.container2_DrawaerLeftSidebar .icon_sidebar_div div {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.container2_DrawaerLeftSidebar .icon_sidebar_div .text_sidebar_icon {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.subScriptions_lsdbar {
+  color: var(--yt-text-primary);
+  padding-top: 8px;
+}
+
+.subScriptions_lsdbar h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 8px 12px;
+  color: var(--yt-text-primary);
+}
+
+.chanel_lsdbar {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 10px;
+  gap: 24px;
+  transition: background-color 0.2s ease;
+}
+
+.chanel_lsdbar:hover {
+  background-color: var(--yt-hover-bg);
+  color: var(--yt-text-primary);
+}
+
+.chanel_lsdbar div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--yt-active-bg);
+  color: var(--yt-text-primary);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.chanel_lsdbar div:last-child {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.container3_DrawaerLeftSidebar {
+  flex-grow: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+}
+

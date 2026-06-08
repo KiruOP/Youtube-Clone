@@ -1,8 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --yt-bg: #0f0f0f;
+  --yt-card-bg: #1f1f1f;
+  --yt-hover-bg: #272727;
+  --yt-active-bg: #3f3f3f;
+  --yt-border: #303030;
+  --yt-red: #ff0000;
+  --yt-text-primary: #f1f1f1;
+  --yt-text-secondary: #aaaaaa;
+  --yt-blue: #3ea6ff;
+  --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: var(--font-family);
+  background-color: var(--yt-bg);
+  color: var(--yt-text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,11 +28,19 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--yt-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: grey;
-  border-radius: 5rem;
+  background-color: var(--yt-border);
+  border-radius: 10px;
 }
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--yt-text-secondary);
+}

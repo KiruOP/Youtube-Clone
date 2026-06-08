@@ -7,7 +7,7 @@ import { applyMiddleware, compose } from "redux";
 import { legacy_createStore as createstore } from "redux";
 import { thunk } from "redux-thunk";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Reducers from "./Reducers";
+import Reducers from "./reducers";
 
 const store = createstore(Reducers, compose(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById("root"));

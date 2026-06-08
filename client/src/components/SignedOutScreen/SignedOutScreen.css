@@ -1,0 +1,65 @@
+.signed-out-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 40px 16px;
+  box-sizing: border-box;
+  background-color: var(--yt-bg);
+  min-height: calc(100vh - 120px);
+}
+
+.signed-out-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  gap: 20px;
+}
+
+.signed-out-icon-wrapper {
+  color: var(--yt-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.signed-out-title {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0;
+  color: var(--yt-text-primary);
+  line-height: 32px;
+}
+
+.signed-out-description {
+  font-size: 14px;
+  color: var(--yt-text-secondary);
+  margin: 0;
+  line-height: 20px;
+}
+
+.signed-out-btn {
+  cursor: pointer;
+  color: var(--yt-blue);
+  background-color: transparent;
+  border: 1px solid var(--yt-border);
+  margin-top: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  outline: none;
+}
+
+.signed-out-btn:hover {
+  background-color: rgba(62, 166, 255, 0.15);
+  border-color: transparent;
+}

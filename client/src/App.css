@@ -1,47 +1,55 @@
 .Chanel_logo_App {
-  width: 2.2rem;
-  height: 2.2rem;
-  margin: auto;
-  border-radius: 100%;
-  background-color: rgb(224, 227, 214);
+  width: 36px;
+  height: 36px;
+  margin-right: 12px;
+  border-radius: 50%;
+  background-color: var(--yt-hover-bg);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--yt-border);
 }
 
 .fstChar_logo_App {
-  margin: auto;
-  color: black;
-  font-weight: bolder;
+  color: var(--yt-text-primary);
+  font-weight: 500;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .container_Pages_App {
   display: flex;
-  background-color: rgb(19, 19, 19);
+  background-color: var(--yt-bg);
+  min-height: calc(100vh - 56px);
 }
 
 .container2_Pages_App {
-  width: calc(100vw - 5rem);
-  height: calc(100vh - 3.65rem);
-  border-top: 2px solid rgb(128, 128, 128, 0.45);
+  flex-grow: 1;
+  height: calc(100vh - 56px);
+  border-top: none;
   overflow-y: auto;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
 .video_box_app {
-  width: 21rem;
-  height: 17rem;
-  margin-bottom: 1rem;
-  border: 2px solid transparent;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 video {
   width: 100%;
-  background-color: rgba(8, 8, 8, 0.662);
+  border-radius: 12px;
+  background-color: #000;
+  transition: transform 0.2s ease;
 }
 
 .dot {
   height: 4px;
   width: 4px;
-  border-radius: 100%;
-  background-color: white;
-  margin: auto 0.5rem;
-}
+  border-radius: 50%;
+  background-color: var(--yt-text-secondary);
+  display: inline-block;
+  margin: auto 6px;
+}
