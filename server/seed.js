@@ -35,8 +35,8 @@ const fakeCommentsList = [
 const seed = async () => {
     try {
         console.log("Connecting to MongoDB database...");
-        await mongoose.connect(dbUrl);
-        console.log("Connected to database successfully.");
+        await mongoose.connect(dbUrl, { dbName: "K-Tube" });
+        console.log(`Connected to database successfully`);
 
         // Create Demo Channel Creator
         let demoChannel = await User.findOne({ email: "demo@k-tube.com" });
