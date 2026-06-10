@@ -2,13 +2,14 @@ import React from "react";
 import "./ShowVideo.css";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import { API_BASE_URL } from "../../config";
 
 const ShowVideo = ({ vid }) => {
   return (
     <>
       <Link to={`/videopage/${vid._id}`}>
         <video
-          src={vid.filepath?.startsWith("http") ? vid.filepath : `http://localhost:5353/${vid.filepath}`}
+          src={vid.filepath?.startsWith("http") ? vid.filepath : `${API_BASE_URL}/${vid.filepath}`}
           className="video_ShowVideo"
         />
       </Link>
