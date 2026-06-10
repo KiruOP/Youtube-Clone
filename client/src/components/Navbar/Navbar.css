@@ -1,0 +1,134 @@
+.Container_Navbar {
+    display: flex;
+    height: 56px;
+    background-color: var(--yt-bg);
+    border-bottom: 1px solid var(--yt-border);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.Burger_Logo_Navbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.burger:hover {
+    background-color: var(--yt-hover-bg);
+}
+
+.logo_div_Navbar {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 4px;
+}
+
+.logo_div_Navbar img {
+    height: 24px;
+}
+
+.logo_title_navbar {
+    margin: 0;
+    color: var(--yt-text-primary);
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    font-family: var(--font-family);
+}
+
+.apps_Box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.apps_Box:hover {
+    background-color: var(--yt-hover-bg);
+}
+
+.user_points_rewards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--yt-hover-bg);
+    border-radius: 18px;
+    padding: 4px 12px;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+    border: 1px solid var(--yt-border);
+}
+
+.user_points_rewards:hover {
+    background-color: var(--yt-active-bg);
+}
+
+.user_points {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--yt-text-primary);
+}
+
+.vid_bell_Navbar {
+    color: var(--yt-text-primary);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.vid_bell_Navbar:hover {
+    background-color: var(--yt-hover-bg);
+}
+
+.Auth_cont_Navbar {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.Auth_Btn {
+    cursor: pointer;
+    color: var(--yt-blue);
+    background-color: transparent;
+    border: 1px solid var(--yt-border);
+    margin: 0;
+    padding: 6px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.Auth_Btn:hover {
+    background-color: rgba(62, 166, 255, 0.15);
+    border-color: transparent;
+}

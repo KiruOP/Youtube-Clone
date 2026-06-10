@@ -1,0 +1,128 @@
+.comment_form_wrapper {
+  display: flex;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.comments_sub_form_comments {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 8px;
+}
+
+.comment_ibox {
+  width: 100%;
+  padding: 8px 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--yt-border);
+  color: var(--yt-text-primary);
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font-family);
+  box-sizing: border-box;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.comment_ibox:focus {
+  border-bottom: 2px solid var(--yt-text-primary);
+}
+
+.comment_action_buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+.comment_cancel_btn {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: var(--yt-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 18px;
+  transition: background-color 0.2s ease;
+}
+
+.comment_cancel_btn:hover {
+  background-color: var(--yt-hover-bg);
+}
+
+.comment_add_btn_comments {
+  cursor: pointer;
+  border: none;
+  background-color: var(--yt-blue);
+  color: #0f0f0f;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 18px;
+  transition: opacity 0.2s ease;
+}
+
+.comment_add_btn_comments:hover {
+  opacity: 0.9;
+}
+
+.display_comment_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* comment item list */
+.comment_item_container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.comment_item_details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment_item_header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.comment_author {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--yt-text-primary);
+}
+
+.comment_time {
+  font-size: 12px;
+  color: var(--yt-text-secondary);
+}
+
+.comment_body {
+  color: var(--yt-text-primary);
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.EditDel_DisplayCommendt {
+  margin-top: 6px;
+  color: var(--yt-blue);
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.EditDel_DisplayCommendt span:hover {
+  text-decoration: underline;
+}

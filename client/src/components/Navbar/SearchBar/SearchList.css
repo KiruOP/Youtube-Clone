@@ -1,0 +1,34 @@
+.Container_SearchList {
+    background-color: var(--yt-card-bg);
+    width: calc(100% - 120px); /* Align width with the input box size */
+    position: absolute;
+    top: 45px;
+    left: 16px;
+    height: fit-content;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 99;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    border: 1px solid var(--yt-border);
+    padding: 8px 0;
+}
+
+.titleItem {
+    margin: 0;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--yt-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.titleItem svg {
+    color: var(--yt-text-secondary);
+}
+
+.titleItem:hover {
+    background-color: var(--yt-hover-bg);
+}
