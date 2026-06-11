@@ -15,9 +15,11 @@ import { Server } from "socket.io";
 dotenv.config()
 const app = express()
 const server = http.createServer(app);
+const clientOrigin = process.env.CLIENT_URL || "http://localhost:3000";
+
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: clientOrigin,
         methods: ["GET", "POST", "PATCH", "DELETE"],
         allowedHeaders: ['Content-Type', 'Authorization']
     }
@@ -27,7 +29,7 @@ const io = new Server(server, {
 
 // CORS configuration
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from this origin
+    origin: clientOrigin, // Allow requests from this origin
     methods: ['GET', 'POST', 'PATCH','DELETE'],
     allowedHeaders: ['Content-Type','Authorization']
 }));
@@ -65,9 +67,11 @@ server.listen(PORT, () => {
     console.log(`Server running on Port http://localhost:${PORT}`);
 })
 
-const DB_URL = process.env.DB_URL
-mongoose.connect(DB_URL).then(() => {
-    console.log("Mongodb Database connected")
+const DB_URL = process.env.DB_URL;
+mongoose.connect(DB_URL, {
+    dbName: 'K-Tube'
+}).then((conn) => {
+    console.log(`MongoDB Connected`);
 }).catch((error) => {
-    console.log(error)
-})
+    console.error(`MongoDB Connection Error: ${error.message}`);
+});
