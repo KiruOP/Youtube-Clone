@@ -15,9 +15,11 @@ import { Server } from "socket.io";
 dotenv.config()
 const app = express()
 const server = http.createServer(app);
+const clientOrigin = process.env.CLIENT_URL || "http://localhost:3000";
+
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: clientOrigin,
         methods: ["GET", "POST", "PATCH", "DELETE"],
         allowedHeaders: ['Content-Type', 'Authorization']
     }
@@ -27,7 +29,7 @@ const io = new Server(server, {
 
 // CORS configuration
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from this origin
+    origin: clientOrigin, // Allow requests from this origin
     methods: ['GET', 'POST', 'PATCH','DELETE'],
     allowedHeaders: ['Content-Type','Authorization']
 }));
